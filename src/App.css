@@ -1,38 +1,34 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ============ Common ======================== */
+.flex-sb {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+}
+.flex {
+  display: flex;
+}
+.pad2 {
+  padding: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+/* ==================App ============================= */
+.App {
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px solid black;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ============== User ============================= */
+.UserImageDiv img {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+/* ================== Mid part ===================== */
+.MidpartMainDiv div {
+}
+.UserMainDiv {
+  font-size: xx-large;
+  font-weight: 700;
+}
+.UserImageDiv img {
+  margin-right: 1.5rem;
 }
