@@ -8,13 +8,7 @@ export default function Home() {
         <div className='HomeMainDiv'>
             <Search />
             <Midpart />
-            <div className='footers'>
-
-                <Footer />
-            </div>
-
-
-
+            <Footer />
         </div>
     )
 }
