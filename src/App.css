@@ -1,13 +1,24 @@
 /* ============ Common ======================== */
+.flex {
+  display: flex;
+}
 .flex-sb {
   display: flex;
   justify-content: space-between;
 }
-.flex {
+.flex-r {
   display: flex;
+  flex-direction: row;
+}
+.flex-c {
+  display: flex;
+  flex-direction: column;
 }
 .pad2 {
   padding: 2rem;
+}
+hr {
+  background-color: gray;
 }
 
 /* ==================App ============================= */
@@ -31,4 +42,38 @@
 }
 .UserImageDiv img {
   margin-right: 1.5rem;
+}
+
+/* ====================== printCard ========================== */
+.printCardItem {
+  cursor: pointer;
+}
+.cName {
+  font-size: x-large;
+  font-weight: 700;
+}
+.cListing {
+  background-color: rgb(250, 250, 250);
+  width: fit-content;
+  padding: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: large;
+  color: gray;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  border-radius: 4px;
+  /* margin: 1rem; */
+}
+.price,
+.difference {
+  font-size: x-large;
+  font-weight: 600;
+}
+.difference {
+  font-weight: 400;
+}
+.percentage {
+  font-size: large;
+  font-weight: 600;
 }

@@ -43,41 +43,40 @@ export default function Search({ cName, cListing, item, difference }) {
             <div>{flag && <div>No Such Company</div>}</div>
             <div className="searchResultDiv">
 
-                {/* {(!flag && query !== "") && <PrintCard data={data} /> */}
-                {/* // {(!flag && query !== "") && <PrintCard cName={cName} cListing={cListing} item={item[1]} difference={difference} /> */}
+                {(!flag && query !== "") && <PrintCard data={data} />
+                    // {(!flag && query !== "") && <PrintCard cName={cName} cListing={cListing} item={item[1]} difference={difference} />
+                }
+                {/* result.map((item, index) => {
 
-                {(!flag && query !== "") && result.map((item, index) => {
+                        let cData = item[0].split("::")
+                        let cName = cData[0]
+                        let cListing = cData[1];
+                        let difference = (((item[1] - item[2]) / item[2]) * 100).toFixed(2);
 
-                    let cData = item[0].split("::")
-                    let cName = cData[0]
-                    let cListing = cData[1];
-                    let difference = (((item[1] - item[2]) / item[2]) * 100).toFixed(2);
-
-                    return (
-                        <div key={index} className={`company-list-${item[index]}`}>
+                        return (
+                            <div key={index} className={`company-list-${item[index]}`}>
 
 
-                            <div >
-                                <h3 className='printSearch flex-sb'>
-                                    <span>{cName}</span>
-                                    <span>{cListing}</span>
-                                    <span>{item[1]}</span>
-                                    <span
-                                        style={{ color: difference > 0 ? "green" : "red" }}
-                                    >
+                                <div >
+                                    <h3 className='printSearch flex-sb'>
+                                        <span>{cName}</span>
+                                        <span>{cListing}</span>
+                                        <span>{item[1]}</span>
+                                        <span
+                                            style={{ color: difference > 0 ? "green" : "red" }}
+                                        >
 
-                                        {difference}
-                                    </span></h3>
+                                            {difference}
+                                        </span></h3>
+
+                                </div>
 
                             </div>
-
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+            </div> */}
             </div>
-
         </div>
-
     );
 }
 
