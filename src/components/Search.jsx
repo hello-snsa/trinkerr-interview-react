@@ -26,7 +26,7 @@ export default function Search({ cName, cListing, item, difference }) {
             <div>
                 <label>
                     <input
-                        type="text" className="search-input"
+                        type="text" className="searchBox"
                         placeholder="Search stocks..."
                         value={query}
                         onChange={(e) => {

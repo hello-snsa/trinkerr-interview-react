@@ -21,23 +21,28 @@ export default function PrintCard({ data }) {
                 return (
                     <div key={index} className={`company-list-${item[index]}`}>
 
-                        <hr />
 
 
-                        <div className='printCardItem flex-sb pad2'>
 
+                        <div className='printCardItem flex-sb '>
+
+                            {/* left side */}
                             <span className='flex-c '>
-                                <span className='cName' style={{ color: difference > 0 ? "rgb(41, 197, 193)" : "rgb(231, 89, 46)" }}>{cName}</span>
+                                <span className={difference > 0 ? "green cName" : "cName red"} >{cName}</span>
                                 <span className='cListing'>{cListing}</span>
                             </span>
 
+                            {/* Right side */}
                             <span className='flex-c'>
-                                <span>
-                                </span>
-                                <span className='price' style={{ color: difference > 0 ? "rgb(41, 197, 193)" : "rgb(231, 89, 46)" }} >{item[1]}</span>
 
-                                <span>
-                                    <img src="assets/upArrow.png" alt="up arrow" />
+                                <span className={difference > 0 ? "green price" : "price red"} >{item[1]}</span>
+
+                                {/* Right Bottom */}
+
+                                <span className='differenceSpan flex '>
+
+                                    <img src="assets/upArrow.png" alt="up arrow" className={difference > 0 ? "visible" : "hidden"} />
+                                    <img src="assets/downArrow.png" alt="down arrow" className={difference > 0 ? "hidden" : "visible"} />
 
                                     <span className='difference' >{difference}</span>
 
@@ -46,9 +51,8 @@ export default function PrintCard({ data }) {
                             </span>
                         </div>
 
+                        <hr />
                     </div>
-                    // </div>
-
 
                 );
             })}

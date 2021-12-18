@@ -5,10 +5,13 @@ import Search from './Search'
 
 export default function Home() {
     return (
-        <div>
+        <div className='HomeMainDiv'>
             <Search />
             <Midpart />
-            <Footer />
+            <div className='footers'>
+
+                <Footer />
+            </div>
 
 
 

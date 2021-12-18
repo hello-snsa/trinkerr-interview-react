@@ -20,9 +20,8 @@ export default function Midpart() {
 
 
             <div>
-                {/* <hr /> */}
-                <PrintCard data={data} />
                 <hr />
+                <PrintCard data={result} />
             </div>
 
 
