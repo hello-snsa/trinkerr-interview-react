@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 
 
 export default function PrintCard({ data }) {
+    // console.log("older", data)
 
 
-    const [result, setResult] = useState(data);
+    // const [result, setResult] = useState(data);
 
     return (
         <div className='printCardMainDiv'>
 
 
 
-            {result.map((item, index) => {
+            {data.map((item, index) => {
+                console.log("old", item)
 
                 let cData = item[0].split("::")
                 let cName = cData[0]

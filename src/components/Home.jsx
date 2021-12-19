@@ -7,7 +7,7 @@ export default function Home() {
     return (
         <div className='HomeMainDiv'>
             <Search />
-            <Midpart />
+            {/* <Midpart /> */}
             <Footer />
         </div>
     )

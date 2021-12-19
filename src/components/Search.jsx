@@ -1,5 +1,6 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import data from "../data.json";
@@ -10,6 +11,7 @@ import PrintCard from './PrintCard';
 export default function Search() {
     const [query, setQuery] = useState("");
     const [result, setResult] = useState([]);
+    const [userData, setUserData] = useState([]);
     const [flag, setFlag] = useState(false);
     const [isAvailable, setIsAvailable] = useState(false);
     const [isHover, setIsHover] = useState(false);
@@ -17,30 +19,46 @@ export default function Search() {
 
 
     const handleSearch = () => {
-        let filteredData = data.filter((e) => {
-            return e[0].toLowerCase().includes(query.toLowerCase());
 
-        });
-        if (filteredData.length > 0) {
-            setResult(filteredData);
-            setFlag(false);
-        } else {
-            setFlag(true);
+        if (query.length >= 0) {
+            let filteredData = data.filter((e) => {
+                return e[0].toLowerCase().includes(query.toLowerCase());
+
+            });
+            console.log(filteredData.length)
+            if (filteredData.length > 0) {
+                setResult(filteredData);
+                setFlag(false);
+
+            } else {
+                setFlag(true);
+                // setResult(userData);
+                getData();
+                console.log("empty")
+            }
+
         }
     };
 
-    const handleAdd = async (e) => {
-        console.log("old", user)
-        user.push(e)
-        console.log("new", user)
-        setIsAvailable(true);
 
+    const getData = async () => {
+        let newData = await axios.get("https://trinkerr-assignment-backend.herokuapp.com/wishlist");
+        let data = newData.data;
+        setResult(data);
+        setUserData(data)
 
-        await axios.post("http://localhost:3004/demo", user);
+        // console.log("old", data)
+    }
 
-        console.log("all")
+    useEffect(() => {
 
+        getData();
+    }, [])
 
+    const handleAdd = async (e, item) => {
+        let postData = await axios.post("https://trinkerr-assignment-backend.herokuapp.com/wishlist", { ...item });
+
+        console.log("postDAta", postData.data)
 
     }
 
@@ -78,14 +96,14 @@ export default function Search() {
                     handleSearch()
                 }} />
 
-            <div>{flag && <div>No Such Company</div>}</div>
+            <div>{flag && <div>No Such Company Found</div>}</div>
             <div className="searchResultDiv">
 
 
 
                 {
 
-                    (!flag && query !== "") && result.map((item, index) => {
+                    (!flag) && result.map((item, index) => {
 
                         let cData = item[0].split("::")
                         let cName = cData[0]
@@ -130,7 +148,7 @@ export default function Search() {
                                     {!isAvailable && <button
 
                                         id={cName}
-                                        onClick={() => handleAdd(item)}
+                                        onClick={(e) => handleAdd(e, item)}
 
                                     >+ ADD</button>
                                     }

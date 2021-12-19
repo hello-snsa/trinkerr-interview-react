@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode",
+      "wishlist": [
+        [
+          "ICICITECH::NSE",
+          358.82,
+          357.41
+        ],
+        [
+          "AXISHCETF::NSE",
+          85.19,
+          85.95
+        ]
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
