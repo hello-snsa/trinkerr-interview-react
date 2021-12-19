@@ -184,3 +184,12 @@ hr {
   height: 25%;
   margin-top: 25%;
 }
+
+.demoV button {
+  visibility: visible;
+  color: red;
+}
+.demoH button {
+  visibility: hidden;
+  color: green;
+}

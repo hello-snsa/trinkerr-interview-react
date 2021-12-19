@@ -27,8 +27,19 @@ export default function Search() {
         }
     };
 
+    // const handleIn = () => {
+    //     setIsHover(true)
+    // }
+    // const handleOut = () => {
+    //     setIsHover(false)
+    // }
+
     const handleAdd = (e) => {
         console.log(user)
+        // let userData = user;
+        // console.log(e);
+        // userData.push(e);
+        // user = userData;
         user.push(e)
         console.log(user)
 
@@ -55,8 +66,8 @@ export default function Search() {
 
     return (
         <div className='searchMainDiv'>
-
-
+            {/* <div> */}
+            {/* <label> */}
             <input
                 type="text" className="searchBox"
                 placeholder="Search stocks..."
@@ -66,7 +77,9 @@ export default function Search() {
 
                     handleSearch()
                 }} />
-
+            {/* </label> */}
+            {/* <button className="search-button" onClick={handleSearch}>Search</button> */}
+            {/* </div> */}
             <div>{flag && <div>No Such Company</div>}</div>
             <div className="searchResultDiv">
 
@@ -81,36 +94,44 @@ export default function Search() {
                         let cListing = cData[1];
                         let difference = (((item[1] - item[2]) / item[2]) * 100).toFixed(2);
 
+                        // const [isHover, setIsHover] = useState(false);
+                        // let temp2=React.useRef();
 
-                        const handleIn = (e, cName) => {
-                            console.log("in", e)
-                            console.log("in", cName)
-                            setIsHover(true);
-                            // document.getElementById(cName).add
-                            e.currentTarget.className = " demoV printCardItem flex-sb";
+
+
+                        let temp = false;
+                        const handleIn = (e) => {
+                            console.log("in")
+                            setIsHover(true)
+                            temp = true;
+                            // e.target.style.className = "demoV";
+                            // e.target.style.visibility = "visible";
+                            e.target.style.button.color = "red";
 
                         }
-                        const handleOut = (e, cName) => {
-                            console.log("out", e)
-                            console.log("out", cName)
-                            setIsHover(false);
-
-                            e.currentTarget.className = " demoH printCardItem flex-sb";
+                        const handleOut = (e) => {
+                            console.log("out")
+                            setIsHover(false)
+                            temp = false;
+                            // e.target.style.visibility = "hidden";
+                            e.target.style.button.color = "green";
+                            // e.target.style.className = "demoH";
 
                         }
 
 
 
                         return (
-                            <div key={index} className={'SearchItem'}>
+                            <div key={index} className={`company-list-${item[index]}`}>
 
-                                <div className={"printCardItem flex-sb demoH"}
-                                    onMouseOver={(e) => handleIn(e, cName)
-                                    }
-                                    onMouseOut={(e) => handleOut(e, cName)}
+                                <div className={"printCardItem flex-sb"} onMouseOver={(e) => handleIn(e)
+                                }
+                                    onMouseOut={(e) => handleOut(e)}
 
                                 >
+                                    {/* <div className='printCardItem flex-sb ' onMouseOver={() => handleIn()} onMouseLeave={() => handleOut()}
 
+                                > */}
 
                                     {/* left side */}
                                     <span className='flex-c '>
@@ -119,20 +140,21 @@ export default function Search() {
                                     </span>
 
                                     {/* mid */}
-
+                                    {/* <button className={isAvailable ? " hidden showOnHover" : "showOnHover"} */}
                                     <button
 
-                                        id={cName}
+                                        // style={{ visibility: isHover ? "visible" : "hidden" }}
                                         onClick={() => handleAdd(item)}
-
                                     >+ ADD</button>
-
-                                    {/* 
                                     <button className={isAvailable ? "hidden showOnHover" : "showOnHover"}
 
                                         onClick={() => handleDel(item)}
 
-                                    > - Del</button> */}
+
+
+
+
+                                    > - Del</button>
 
                                     {/* <button
                                         style={{ color: isTrue ? "green" : "red" }}
