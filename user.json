@@ -1,12 +1,66 @@
-[
-  [
-    "ICICITECH::NSE",
-    358.82,
-    357.41
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
   ],
-  [
-    "AXISHCETF::NSE",
-    85.19,
-    85.95
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "demo": [
+    [
+      "ICICITECH::NSE",
+      358.82,
+      357.41
+    ],
+    [
+      "AXISHCETF::NSE",
+      85.19,
+      85.95
+    ],
+    [
+      "JKTYRE::NSE",
+      128.7,
+      127.85
+    ],
+    [
+      "GREENLAM::NSE",
+      1483.95,
+      1511.75
+    ],
+    [
+      "RELAXO::NSE",
+      1294.65,
+      1225.2
+    ],
+    [
+      "SHREDIGCEM::NSE",
+      76.6,
+      75.05
+    ],
+    [
+      "APOLLOTYRE::NSE",
+      204.55,
+      206.15
+    ],
+    [
+      "CREST::NSE",
+      130.6,
+      131.95
+    ],
+    [
+      "DRREDDY::NSE",
+      4675.85,
+      4697.6
+    ]
   ]
-]
+}

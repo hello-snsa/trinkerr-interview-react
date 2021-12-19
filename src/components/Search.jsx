@@ -1,5 +1,7 @@
 
 import React, { useRef, useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 import data from "../data.json";
 import user from "../user.json";
 import PrintCard from './PrintCard';
@@ -27,10 +29,18 @@ export default function Search() {
         }
     };
 
-    const handleAdd = (e) => {
-        console.log(user)
+    const handleAdd = async (e) => {
+        console.log("old", user)
         user.push(e)
-        console.log(user)
+        console.log("new", user)
+        setIsAvailable(true);
+
+
+        await axios.post("http://localhost:3004/demo", user);
+
+        console.log("all")
+
+
 
     }
 
@@ -48,6 +58,7 @@ export default function Search() {
             }
         })
         console.log("user", user)
+        setIsAvailable(false);
 
     }
 
@@ -83,16 +94,12 @@ export default function Search() {
 
 
                         const handleIn = (e, cName) => {
-                            console.log("in", e)
-                            console.log("in", cName)
+
                             setIsHover(true);
-                            // document.getElementById(cName).add
                             e.currentTarget.className = " demoV printCardItem flex-sb";
 
                         }
                         const handleOut = (e, cName) => {
-                            console.log("out", e)
-                            console.log("out", cName)
                             setIsHover(false);
 
                             e.currentTarget.className = " demoH printCardItem flex-sb";
@@ -120,24 +127,24 @@ export default function Search() {
 
                                     {/* mid */}
 
-                                    <button
+                                    {!isAvailable && <button
 
                                         id={cName}
                                         onClick={() => handleAdd(item)}
 
                                     >+ ADD</button>
+                                    }
+                                    {isAvailable && <button
 
-                                    {/* 
-                                    <button className={isAvailable ? "hidden showOnHover" : "showOnHover"}
-
+                                        id={cName}
                                         onClick={() => handleDel(item)}
 
-                                    > - Del</button> */}
+                                    >- Del</button>
+                                    }
 
-                                    {/* <button
-                                        style={{ color: isTrue ? "green" : "red" }}
 
-                                    >Demo</button> */}
+
+
 
 
 
