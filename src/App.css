@@ -33,9 +33,7 @@ button {
   font-size: large;
   font-weight: 600;
 }
-/* ==================App ============================= */
-.App {
-}
+
 /* =================== Home ========================= */
 .HomeMainDiv {
   margin: 5% 25% 2% 20%;
@@ -103,7 +101,6 @@ button {
   font-weight: 600;
   margin-top: 0.25rem;
   border-radius: 4px;
-  /* margin: 1rem; */
 }
 .price {
   text-align: right;
@@ -120,6 +117,7 @@ button {
   font-size: x-large;
   font-weight: 600;
 }
+/* =============== Search ====================== */
 .visible {
   display: visible;
 }
@@ -133,18 +131,18 @@ button {
 .green {
   color: rgb(41, 197, 193);
 }
-
-.differenceSpan img {
-  /* margin-top: 0.5rem; */
+.demoV button {
+  visibility: visible;
+  color: red;
 }
-
+.demoH button {
+  visibility: hidden;
+  color: green;
+}
 /* ======================= Footer =================== */
-/* .FooterMainDiv { */
+
 .footers {
-  /* position: absolute;
-  position: fixed; */
   position: relative;
-  /* top: 0; */
   bottom: 0;
   width: 100%;
   height: 10px;
@@ -155,11 +153,9 @@ button {
   position: relative;
   position: fixed;
   top: 80vh;
-  /* bottom: 0; */
   width: 60%;
   width: 59.9%;
   height: fit-content;
-  /* height: 15rem; */
   background-color: white;
   border: 2px solid gray;
 }
@@ -175,12 +171,9 @@ button {
 }
 
 .FooterRight {
-  /* text-align: center; */
   font-size: xx-large;
   width: 10rem;
   height: fit-content;
-  /* min-width: fit-content; */
-  /* min-width: 15rem; */
   border: 3px solid rgb(161, 209, 251);
   padding: 0rem 1rem 0rem 1rem;
 }
@@ -188,13 +181,4 @@ button {
   width: 25%;
   height: 25%;
   margin-top: 25%;
-}
-
-.demoV button {
-  visibility: visible;
-  color: red;
-}
-.demoH button {
-  visibility: hidden;
-  color: green;
 }

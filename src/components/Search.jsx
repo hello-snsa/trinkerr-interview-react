@@ -8,6 +8,7 @@ export default function Search() {
     const [query, setQuery] = useState("");
     const [userData, setUserData] = useState([]);
     const [result, setResult] = useState([]);
+    const [count, setCount] = useState(1);
 
     const [flag, setFlag] = useState(false);
     const [isAvailable, setIsAvailable] = useState(true);
@@ -57,7 +58,7 @@ export default function Search() {
 
     const handleAdd = async (e, item) => {
         let isPresent = false;
-        let count = 1;
+        setCount(1);
 
         for (let i = 0; i < userData.length; i++) {
             if (item[0] === userData[i][0]) {
@@ -67,7 +68,7 @@ export default function Search() {
         if (!isPresent && count < 2) {
             let postData = await axios.post("https://trinkerr-assignment-backend.herokuapp.com/wishlist", { ...item });
 
-            count++;
+            setCount(2);
             alert("added successfully in your wishlist")
 
         } else {
