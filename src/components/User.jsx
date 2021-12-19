@@ -16,7 +16,6 @@ export default function User() {
                 <img src="assets/editBtn.png" alt="editBtn" />
                 <img src="assets/delBtn.png" alt="" />
             </span>
-
         </div>
     )
 }

@@ -1,41 +1,42 @@
-
 import React, { useEffect, useState } from 'react'
-
-import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import data from "../data.json";
-import user from "../user.json";
-import PrintCard from './PrintCard';
+import User from './User';
 
 
 export default function Search() {
     const [query, setQuery] = useState("");
-    const [result, setResult] = useState([]);
     const [userData, setUserData] = useState([]);
+    const [result, setResult] = useState([]);
+
     const [flag, setFlag] = useState(false);
-    const [isAvailable, setIsAvailable] = useState(false);
-    const [isHover, setIsHover] = useState(false);
-    const [isTrue, setIsTrue] = useState(false);
+    const [isAvailable, setIsAvailable] = useState(true);
 
 
-    const handleSearch = () => {
+    const handleSearch = (e) => {
+        setIsAvailable(false);
 
-        if (query.length >= 0) {
+        let newQuery = e.target.value;
+        setQuery(e.target.value)
+        if (newQuery.length >= 1) {
             let filteredData = data.filter((e) => {
                 return e[0].toLowerCase().includes(query.toLowerCase());
 
             });
-            console.log(filteredData.length)
             if (filteredData.length > 0) {
+
                 setResult(filteredData);
                 setFlag(false);
 
             } else {
                 setFlag(true);
-                // setResult(userData);
-                getData();
-                console.log("empty")
+
+
             }
+
+        } else {
+            getData();
+            setIsAvailable(true);
 
         }
     };
@@ -45,38 +46,39 @@ export default function Search() {
         let newData = await axios.get("https://trinkerr-assignment-backend.herokuapp.com/wishlist");
         let data = newData.data;
         setResult(data);
-        setUserData(data)
-
-        // console.log("old", data)
+        setUserData(data);
     }
 
     useEffect(() => {
 
         getData();
+
     }, [])
 
     const handleAdd = async (e, item) => {
-        let postData = await axios.post("https://trinkerr-assignment-backend.herokuapp.com/wishlist", { ...item });
+        let isPresent = false;
+        let count = 1;
+        for (let i = 0; i < userData.length; i++) {
+            if (item[0] === userData[i][0]) {
+                isPresent = true;
+            }
+        }
+        if (!isPresent && count < 2) {
+            let postData = await axios.post("https://trinkerr-assignment-backend.herokuapp.com/wishlist", { ...item });
+            count++;
+            alert("added successfully in your wishlist")
 
-        console.log("postDAta", postData.data)
-
+        } else {
+            alert("already added in your wishlist");
+        }
     }
 
-    const handleDel = (item) => {
+    const handleDel = async (item) => {
 
-        console.log("user", user)
+        let postData = await axios.delete(`https://trinkerr-assignment-backend.herokuapp.com/wishlist/${item.id}`,);
 
-        user = user.filter((e) => {
-            let userData = [];
-            if (e[0] != item[0]) {
-                userData.push(e);
-                return userData;
+        getData();
 
-
-            }
-        })
-        console.log("user", user)
-        setIsAvailable(false);
 
     }
 
@@ -91,16 +93,21 @@ export default function Search() {
                 placeholder="Search stocks..."
                 value={query}
                 onChange={(e) => {
-                    setQuery(e.target.value)
 
-                    handleSearch()
+                    handleSearch(e)
                 }} />
 
-            <div>{flag && <div>No Such Company Found</div>}</div>
+            <div>{flag && <div><h1>No Such Company Found</h1></div>}</div>
+
             <div className="searchResultDiv">
 
+                {/* If searching is not in use */}
+                {
+                    query === "" ? (<> <User /> <hr /></>) : ""
 
+                }
 
+                {/* If we are searching stocks */}
                 {
 
                     (!flag) && result.map((item, index) => {
@@ -113,18 +120,14 @@ export default function Search() {
 
                         const handleIn = (e, cName) => {
 
-                            setIsHover(true);
                             e.currentTarget.className = " demoV printCardItem flex-sb";
 
                         }
                         const handleOut = (e, cName) => {
-                            setIsHover(false);
 
                             e.currentTarget.className = " demoH printCardItem flex-sb";
 
                         }
-
-
 
                         return (
                             <div key={index} className={'SearchItem'}>
@@ -150,7 +153,7 @@ export default function Search() {
                                         id={cName}
                                         onClick={(e) => handleAdd(e, item)}
 
-                                    >+ ADD</button>
+                                    >+ Add</button>
                                     }
                                     {isAvailable && <button
 
@@ -159,11 +162,6 @@ export default function Search() {
 
                                     >- Del</button>
                                     }
-
-
-
-
-
 
 
                                     {/* Right side */}

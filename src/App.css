@@ -27,7 +27,12 @@
 hr {
   background-color: gray;
 }
-
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: large;
+  font-weight: 600;
+}
 /* ==================App ============================= */
 .App {
 }
