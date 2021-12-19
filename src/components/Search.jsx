@@ -58,6 +58,7 @@ export default function Search() {
     const handleAdd = async (e, item) => {
         let isPresent = false;
         let count = 1;
+
         for (let i = 0; i < userData.length; i++) {
             if (item[0] === userData[i][0]) {
                 isPresent = true;
@@ -65,6 +66,7 @@ export default function Search() {
         }
         if (!isPresent && count < 2) {
             let postData = await axios.post("https://trinkerr-assignment-backend.herokuapp.com/wishlist", { ...item });
+
             count++;
             alert("added successfully in your wishlist")
 
