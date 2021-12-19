@@ -1,12 +1,17 @@
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import data from "../data.json";
+import user from "../user.json";
 import PrintCard from './PrintCard';
 
 export default function Search() {
     const [query, setQuery] = useState("");
     const [result, setResult] = useState([]);
     const [flag, setFlag] = useState(false);
+    const [isAvailable, setIsAvailable] = useState(false);
+    const [isHover, setIsHover] = useState(false);
+    const [isTrue, setIsTrue] = useState(false);
+
 
     const handleSearch = () => {
         let filteredData = data.filter((e) => {
@@ -20,6 +25,43 @@ export default function Search() {
             setFlag(true);
         }
     };
+
+    // const handleIn = () => {
+    //     setIsHover(true)
+    // }
+    // const handleOut = () => {
+    //     setIsHover(false)
+    // }
+
+    const handleAdd = (e) => {
+        console.log(user)
+        // let userData = user;
+        // console.log(e);
+        // userData.push(e);
+        // user = userData;
+        user.push(e)
+        console.log(user)
+
+    }
+
+    const handleDel = (item) => {
+
+        console.log("user", user)
+
+        user = user.filter((e) => {
+            let userData = [];
+            if (e[0] != item[0]) {
+                userData.push(e);
+                return userData;
+
+
+            }
+        })
+        console.log("user", user)
+
+    }
+
+
 
     return (
         <div className='searchMainDiv'>
@@ -43,6 +85,7 @@ export default function Search() {
 
 
                 {
+
                     (!flag && query !== "") && result.map((item, index) => {
 
                         let cData = item[0].split("::")
@@ -50,10 +93,38 @@ export default function Search() {
                         let cListing = cData[1];
                         let difference = (((item[1] - item[2]) / item[2]) * 100).toFixed(2);
 
+                        // const [isHover, setIsHover] = useState(false);
+                        // let temp2=React.useRef();
+
+
+
+                        let temp = false;
+                        const handleIn = () => {
+                            console.log("in")
+                            setIsHover(true)
+                            temp = true;
+
+                        }
+                        const handleOut = () => {
+                            console.log("out")
+                            setIsHover(false)
+                            temp = false;
+
+                        }
+
+
+
                         return (
                             <div key={index} className={`company-list-${item[index]}`}>
 
-                                <div className='printCardItem flex-sb '>
+                                <div className='printCardItem flex-sb ' onMouseOver={() => setIsTrue(true)}
+                                    onMouseLeave={() => setIsTrue(false)}
+
+
+                                >
+                                    {/* <div className='printCardItem flex-sb ' onMouseOver={() => handleIn()} onMouseLeave={() => handleOut()}
+
+                                > */}
 
                                     {/* left side */}
                                     <span className='flex-c '>
@@ -61,10 +132,36 @@ export default function Search() {
                                         <span className='cListing'>{cListing}</span>
                                     </span>
 
+                                    {/* mid */}
+                                    {/* <button className={isAvailable ? " hidden showOnHover" : "showOnHover"} */}
+                                    <button className={isAvailable ? " hidden showOnHovers" : "showOnHovers"}
+                                        style={{ visibility: isHover ? "visible" : "hidden" }}
+                                        // style={{ visibility: isHover ? "visible" : "hidden" }}
+                                        onClick={() => handleAdd(item)}
+                                    >+ ADD</button>
+                                    <button className={isAvailable ? "hidden showOnHover" : "showOnHover"}
+
+                                        onClick={() => handleDel(item)}
+
+
+
+
+
+                                    > - Del</button>
+
+                                    <button
+                                        style={{ color: isTrue ? "green" : "red" }}
+
+                                    >Demo</button>
+
+
+
                                     {/* Right side */}
                                     <span className='flex-c'>
 
                                         <span className={difference > 0 ? "green price" : "price red"} >{item[1]}</span>
+
+
 
                                         {/* Right Bottom */}
 
@@ -87,7 +184,7 @@ export default function Search() {
                     })
                 }
             </div>
-        </div>
+        </div >
     )
 
 

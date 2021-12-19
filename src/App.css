@@ -58,6 +58,14 @@ hr {
   font-size: x-large;
   color: black;
 }
+.showOnHover {
+  /* display: none; */
+}
+.showOnHover:hover {
+  /* display: contents; */
+  visibility: visible;
+  background-color: blueviolet;
+}
 
 /* ================== Mid part ===================== */
 .MidpartMainDiv div {
